@@ -38,24 +38,24 @@ Or download the .ps1 file directly from GitHub.
 
 ⚡ Quick Start
  Basic fuzz:
-.\EndpointFuzzer.ps1 -BaseUrl "https://example.com" -WordlistPath ".\wordlists\common.txt"
+- .\EndpointFuzzer.ps1 -BaseUrl "https://example.com" -WordlistPath ".\wordlists\common.txt"
 
 Cookie + Custom Header:
-.\EndpointFuzzer.ps1 `
+- .\EndpointFuzzer.ps1 `
   -BaseUrl "https://example.com" `
   -WordlistPath ".\wordlists\common.txt" `
   -Cookie "auth_session=ABC123" `
   -Headers @{ "User-Agent" = "LoganFuzzer/1.0" }
 
 POST fuzz with JSON body:
-.\EndpointFuzzer.ps1 `
+- .\EndpointFuzzer.ps1 `
   -BaseUrl "https://example.com/api" `
   -WordlistPath ".\wordlists\api.txt" `
   -Method POST `
   -BodyPath ".\body.json"
 
 Save results (CSV + TXT):
-.\EndpointFuzzer.ps1 `
+- .\EndpointFuzzer.ps1 `
   -BaseUrl "https://example.com" `
   -WordlistPath ".\wordlists\common.txt" `
   -OutTxt results.txt `
@@ -84,46 +84,24 @@ Example:
 Most common length: 1024 bytes (baseline)
 
 Endpoints with unusual lengths:
-   502   200  https://example.com/api/debug
-   630   403  https://example.com/private
 
-🗂️ Folder Structure
-PowerShell-EndpointFuzzer/
-│
-├── EndpointFuzzer.ps1
-├── README.md
-├── LICENSE
-│
-├── wordlists/
-│   ├── common_endpoints.txt
-│   ├── api.txt
-│   └── admin.txt
-│
-├── examples/
-│   └── sample_output.csv
-│
-└── docs/
-    └── screenshot.png
+502   200   https://example.com/api/debug
+630   403   https://example.com/private
 
-📄 Parameters
+📐 Parameters
+
 Parameter	Description
-BaseUrl	Base target URL (required)
-WordlistPath	Wordlist of endpoints (required)
-Cookie	Send a cookie
-Headers	Custom headers (hashtable)
-Method	GET, POST, PUT, DELETE, HEAD
-BodyPath	Load request body from file
-IncludeStatus	Only show/log selected codes
-OutTxt	Save results to TXT
-OutCsv	Save results to CSV
-MinDelayMs	Minimum random delay
-MaxDelayMs	Maximum random delay
-📸 Screenshot
-
-(Place your screenshot inside docs/screenshot.png)
-Then embed it:
-
-![Screenshot](docs/screenshot.png)
+- BaseUrl	Target base URL (required)
+- WordlistPath	Path to endpoint wordlist (required)
+- Cookie	Sends a cookie with the request
+- Headers	Custom headers (PowerShell hashtable)
+- Method	HTTP method: GET, POST, PUT, DELETE, HEAD
+- BodyPath	Loads request body from a file
+- IncludeStatus	Only show/log selected HTTP codes
+- OutTxt	Save results to a .txt file
+- OutCsv	Save results to a .csv file
+- MinDelayMs	Minimum random delay (ms)
+- MaxDelayMs	Maximum random delay (ms)
 
 ⚖️ License
 
